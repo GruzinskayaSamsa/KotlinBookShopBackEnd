@@ -1,0 +1,1 @@
+data class BookResponse(val name: String, var amount: Int)

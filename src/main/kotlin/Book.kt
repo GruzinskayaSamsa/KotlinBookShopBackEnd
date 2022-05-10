@@ -1,0 +1,1 @@
+data class Book(val name: String, var amount: Int, var cost: Int)
