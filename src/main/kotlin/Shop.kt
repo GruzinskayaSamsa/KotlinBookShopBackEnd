@@ -9,8 +9,8 @@ data class Shop(var books: Array<Book?> = arrayOfNulls<Book>(0)) {
         var n = 0
 
         for (book in books){
-            if (book!!.amount > 0)
-                println("\"${book.name}\", ${book.amount} шт., ${book.cost} руб.")
+            if (book!!.getAmount() > 0)
+                println("\"${book.getName()}\", ${book.getAmount()} шт., ${book.getCost()} руб.")
             else n++
         }
 
@@ -21,10 +21,9 @@ data class Shop(var books: Array<Book?> = arrayOfNulls<Book>(0)) {
     /** метод для расчета предварительной стоимости книг **/
     fun costGuess(bookr: BookResponse): Int {
         for (book in books) {
-            if (book?.name == bookr.name) {
-                if (book.amount - bookr.amount >= 0) {
-                    return bookr.amount * book.cost
-                } else return -2
+            if (book?.getName() == bookr.getName()) {
+                return if (book.getAmount() - bookr.getAmount() >= 0) bookr.getAmount() * book.getCost()
+                    else -2
             }
         }
         return -1
@@ -32,9 +31,9 @@ data class Shop(var books: Array<Book?> = arrayOfNulls<Book>(0)) {
 
     /** метод для покупки книг у магазина **/
     fun buyBook(bookr: BookResponse): Boolean {
-        for (i in 0..books.size) {
-            if (books[i]?.name == bookr.name){
-                books[i]!!.amount -= bookr.amount
+        for (i in 0 until books.size) {
+            if (books[i]?.getName() == bookr.getName()){
+                books[i]!!.changeAmount(-bookr.getAmount())
                 return true
             }
         }

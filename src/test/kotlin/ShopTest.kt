@@ -40,4 +40,53 @@ internal class ShopTest {
             "должны выводиться продающиеся книги")
     }
 
+    @Test
+    fun costGuessNoBookInShop() {
+        var shop = Shop()
+        var response = BookResponse("BookName", 1)
+        assertEquals(-1, shop.costGuess(response), "возвращаеиое значение должно быть -1")
+    }
+
+    @Test
+    fun costGuessNoBookAmountInShop() {
+        var booksForShop = arrayOf<Book?>(Book("BookName", 1, 100))
+        var shop = Shop(booksForShop)
+        var response = BookResponse("BookName", 4)
+        assertEquals(-2, shop.costGuess(response), "возвращаеиое значение должно быть -2")
+    }
+
+    @Test
+    fun costGuessAmountEquals() {
+        var booksForShop = arrayOf<Book?>(Book("BookName", 1, 100))
+        var shop = Shop(booksForShop)
+        var response = BookResponse("BookName", 1)
+        assertEquals(100, shop.costGuess(response),
+            "возвращаеиое значение должно равняться цене купленной книги")
+    }
+
+    @Test
+    fun costGuessAmountLess() {
+        var booksForShop = arrayOf<Book?>(Book("BookName", 4, 100))
+        var shop = Shop(booksForShop)
+        var response = BookResponse("BookName", 1)
+        assertEquals(100, shop.costGuess(response),
+            "возвращаеиое значение должно равняться цене купленной книги")
+    }
+
+    @Test
+    fun buyBookNoBook() {
+        var booksForShop = arrayOf<Book?>(Book("BookName1", 1, 100))
+        var shop = Shop(booksForShop)
+        var response = BookResponse("BookName", 1)
+        assertEquals(false, shop.buyBook(response), "покупка не должна производиться")
+    }
+
+    @Test
+    fun buyBookCorrect() {
+        var booksForShop = arrayOf<Book?>(Book("BookName", 1, 100))
+        var shop = Shop(booksForShop)
+        var response = BookResponse("BookName", 1)
+        assertEquals(true, shop.buyBook(response), "покупка должна производиться")
+    }
+
 }

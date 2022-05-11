@@ -15,7 +15,7 @@ class DataBaseAdapter(){
 
         for (book in refactoringData){
             var bookName: String = book.substringAfter("\"").substringBefore("\", ")
-            var amount: Int = book.substringAfter("\", ").substringBeforeLast(",").toInt()
+            var amount: Int = book.substringAfterLast("\", ").substringBeforeLast(",").toInt()
             var cost: Int = book.substringAfterLast(", ").toInt()
             books += Book(bookName, amount, cost)
         }

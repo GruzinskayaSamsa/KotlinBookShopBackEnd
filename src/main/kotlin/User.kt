@@ -15,8 +15,8 @@ data class User(var balance: Int = 0, var boughtBooks: Array<BookResponse?> = ar
         var ok: Boolean = false
 
         for (book in boughtBooks) {
-            if (book?.name == bookr.name){
-                book.amount += bookr.amount
+            if (book?.getName() == bookr.getName()){
+                book.changeAmount(bookr.getAmount())
                 ok = true
                 break
             }
@@ -41,7 +41,7 @@ data class User(var balance: Int = 0, var boughtBooks: Array<BookResponse?> = ar
         if (boughtBooks.size == 0) println("you have no bought books")
         else {
             for (book in boughtBooks)
-                println("\"${book?.name}\", ${book?.amount} шт.")
+                println("\"${book?.getName()}\", ${book?.getAmount()} шт.")
         }
     }
 
