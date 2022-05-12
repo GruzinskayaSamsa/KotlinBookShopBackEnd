@@ -10,7 +10,7 @@ class Controller() {
         var userCheck: Boolean = false
 
         if (cost >= 0){
-            if (user?.getBalance()!! - cost >= 0){
+            if (user.checkCost(cost)){
                 shopCheck = shop.buyBook(bookr)
                 userCheck = user.buyBook(cost, bookr)
             }

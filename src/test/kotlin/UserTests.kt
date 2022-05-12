@@ -63,4 +63,22 @@ internal class UserTests {
             "должен выводиться перечень купленных книг")
     }
 
+    @Test
+    fun checkCostCostMoreBalance() {
+        var user = User()
+        assertEquals(false, user.checkCost(5000), "баланса не хватит для покупки")
+    }
+
+    @Test
+    fun checkCostNegativeCost() {
+        var user = User(100)
+        assertEquals(false, user.checkCost(-5000), "невозможная цена")
+    }
+
+    @Test
+    fun checkCostAllCorrect() {
+        var user = User(100)
+        assertEquals(true, user.checkCost(50), "покупка возможна")
+    }
+
 }
