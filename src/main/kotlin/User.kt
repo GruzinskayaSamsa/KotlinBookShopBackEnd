@@ -5,9 +5,6 @@ data class User(var balance: Int = 0, var boughtBooks: Array<BookResponse?> = ar
     *   boughtBooks: массив купленных пользователем книг
     **/
 
-    /** метод возвращает баланс пользователя **/
-    fun getBalance(): Int? = balance
-
     /** метод для преобритения книги со стороны пользователя **/
     fun buyBook(cost: Int, bookr: BookResponse): Boolean {
         if (balance - cost >= 0) balance -= cost
@@ -44,5 +41,8 @@ data class User(var balance: Int = 0, var boughtBooks: Array<BookResponse?> = ar
                 println("\"${book?.getName()}\", ${book?.getAmount()} шт.")
         }
     }
+
+    /** метод для проверки возможности покупки **/
+    fun checkCost(cost:Int): Boolean = ((balance - cost >= 0) and (cost >= 0))
 
 }
