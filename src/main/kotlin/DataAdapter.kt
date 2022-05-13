@@ -1,4 +1,4 @@
-class DataBaseAdapter(){
+class DataAdapter(){
     /** класс преобразует полученные исходные данные в
      * пригодный для дальнейшего использования вид **/
 
@@ -23,4 +23,23 @@ class DataBaseAdapter(){
         return books
     }
 
+    /** метод возвращает новое значене more если переданная строка соответсвует формату,
+     *  иначе возвращается старое значение **/
+    fun searchMore(data: String = "", oldVar: Int = 0): Int {
+        if (data.startsWith("filter more than ")) {
+            return data.substringAfterLast("filter more than ").toInt()
+        }
+        return oldVar
+    }
+
+    /** метод возвращает новое значене less если переданная строка соответсвует формату,
+     *  иначе возвращается старое значение **/
+    fun searchLess(data: String = "", oldVar: Int = Int.MAX_VALUE): Int {
+        if (data.startsWith("filter less than ")) {
+            return data.substringAfterLast("filter less than ").toInt()
+        }
+        return oldVar
+    }
+
 }
+

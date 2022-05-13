@@ -6,7 +6,7 @@ internal class ShopTest {
     @Test
     fun showBooksInStockNoBooks() {
         var shop = Shop()
-        assertEquals(println("no books in shop"), shop.showBooksInStock(),
+        assertEquals(println("no matching books in shop"), shop.showBooksInStock(),
             "должно выводится сообщение об отсутствии книг в магазине")
     }
 
@@ -15,7 +15,7 @@ internal class ShopTest {
         var books: Array<Book?> = arrayOf(Book("BookName1", 0, 100),
             Book("BookName2", 0, 200), Book("BookName3", 0, 300))
         var shop = Shop(books)
-        assertEquals(println("no books in shop"), shop.showBooksInStock(),
+        assertEquals(println("no matching books in shop"), shop.showBooksInStock(),
             "должно выводится сообщение об отсутствии книг в магазине")
     }
 
